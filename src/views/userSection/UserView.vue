@@ -7,8 +7,11 @@
 <script>
 
 import UserSection from "@/components/user-section/UserSection";
+
 export default {
-  components: {UserSection}
+  components: {
+    UserSection
+  }
 }
 
 

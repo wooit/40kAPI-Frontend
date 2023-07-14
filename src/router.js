@@ -5,6 +5,7 @@ import SignupView from "@/views/auth/SignupView";
 import BooksList from "@/views/books/BooksList";
 import store from "@/store/index";
 import UserSection from "@/components/user-section/UserSection";
+import AdminSection from "@/components/admin-section/AdminSection";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -29,6 +30,9 @@ const router = createRouter({
         },
         {
             path: '/user-section', component: UserSection, name: 'userSection', meta: { requiresAuth: true }
+        },
+        {
+            path: '/admin-section', component: AdminSection, name: 'adminSection', meta: { requiresAuth: true }
         }
     ],
     linkActiveClass: 'active',

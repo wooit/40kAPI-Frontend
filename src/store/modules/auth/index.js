@@ -8,7 +8,8 @@ export default {
         return {
             userId: null,
             token: null,
-            userName: null
+            userName: null,
+            isAdmin: null,
         }
     },
     mutations: mutations,

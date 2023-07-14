@@ -13,6 +13,11 @@
         <router-link class="nav-item" to="/login">Login</router-link>
         <router-link class="nav-item" to="/signup">Signup</router-link>
       </div>
+      <div v-else-if="isAdmin && isLoggedIn">
+        <router-link class="nav-item" to="/admin-section">Admin</router-link>
+        <router-link class="nav-item" to="/user-section">{{ userName }}</router-link>
+        <router-link class="nav-item" @click="logout" to="/logout">Logout</router-link>
+      </div>
       <div v-else>
         <router-link class="nav-item" to="/user-section">{{ userName }}</router-link>
         <router-link class="nav-item" @click="logout" to="/logout">Logout</router-link>
@@ -31,6 +36,13 @@ export default {
   computed: {
     isLoggedIn(){
       return this.$store.getters.isAuthenticated;
+    },
+    isAdmin(){
+      if(this.$store.getters.isAdmin === true){
+        return  this.$store.getters.isAdmin
+      }
+      return 0
+      // return this.$store.getters.isAdmin;
     },
     userName(){
       return this.$store.getters.userName;
