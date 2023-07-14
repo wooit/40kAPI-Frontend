@@ -21,9 +21,6 @@ export default {
     NavBar,
     TheFooter
   },
-  created() {
-    this.$store.dispatch('tryLogin')
-  }
 }
 
 </script>

@@ -32,7 +32,7 @@ const router = createRouter({
             path: '/user-section', component: UserSection, name: 'userSection', meta: { requiresAuth: true }
         },
         {
-            path: '/admin-section', component: AdminSection, name: 'adminSection', meta: { requiresAuth: true }
+            path: '/admin-section', component: AdminSection, name: 'adminSection', meta: { requiresAuth: true, adminRole:true }
         }
     ],
     linkActiveClass: 'active',
@@ -41,6 +41,9 @@ const router = createRouter({
 router.beforeEach(function (to, _, next){
     //redirect to home if user is logging out
     if(to.meta.redirectHome){
+        next('/home');
+    } else if(to.meta.adminRole && store.getters.isAdmin === false){
+        console.log(store.getters.isAdmin)
         next('/home');
         //reditrct login if user want access url that needs authentification and is not yet authenticated
     } else if(to.meta.requiresAuth && !store.getters.isAuthenticated){
