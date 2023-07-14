@@ -26,5 +26,29 @@ export default {
 </script>
 
 <style>
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #121112;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 5rem;
+  align-items: center;
+}
 
+.footer-element {
+  color: white;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.footer-element:hover,
+.footer-element:active{
+  color: cyan;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
 </style>

@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from '@/views/HomeView';
 import LoginView from "@/views/auth/LoginView";
 import SignupView from "@/views/auth/SignupView";
+import BooksList from "@/views/books/BooksList";
+import store from "@/store/index";
+import UserSection from "@/components/user-section/UserSection";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,13 +16,37 @@ const router = createRouter({
             path: '/home', component: HomeView, name: 'home',
         },
         {
-            path: '/login', component: LoginView, name: 'login'
+            path: '/books', component: BooksList, name: 'books', // meta: { requiresAuth: true }
         },
         {
-            path: '/signup', component: SignupView, name: 'signup'
+            path: '/login', component: LoginView, name: 'login', meta: { requiredNotBeingAuth: true }
+        },
+        {
+            path: '/logout', name: 'logout', meta: { requiresAuth: true, redirectHome: true }
+        },
+        {
+            path: '/signup', component: SignupView, name: 'signup', meta: { requiredNotBeingAuth: true }
+        },
+        {
+            path: '/user-section', component: UserSection, name: 'userSection', meta: { requiresAuth: true }
         }
     ],
     linkActiveClass: 'active',
 });
+
+router.beforeEach(function (to, _, next){
+    //redirect to home if user is logging out
+    if(to.meta.redirectHome){
+        next('/home');
+        //reditrct login if user want access url that needs authentification and is not yet authenticated
+    } else if(to.meta.requiresAuth && !store.getters.isAuthenticated){
+        next('/login');
+        //redirect to home if user already loggedIn
+    } else if(to.meta.requiredNotBeingAuth && store.getters.isAuthenticated){
+        next('/home')
+    } else {
+        next()
+    }
+})
 
 export default router;
