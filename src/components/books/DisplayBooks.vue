@@ -1,5 +1,4 @@
 <template>
-  <h1>TEST</h1>
   <div class="grid-champions">
   <book-card v-for="book in allBooks" :key="book.id" :dataBook="book"></book-card>
   </div>
@@ -7,11 +6,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import BookCard from "@/components/books/BookCard";
 
 export default {
-  components: {BookCard},
+  components: {
+    BookCard
+  },
   data(){
     return {
       allBooks: [],
@@ -19,14 +19,10 @@ export default {
     }
   },
   methods: {
-    initComponentData(){
-      axios.get('http://localhost:5000/books').then(response => {
-            console.log(response.data);
-            this.formatData(response.data)
-          })
-          .catch(error =>{
-            console.log(error);
-          })
+    async initComponentData(){
+      //dispatch actions for fetching books
+      await this.$store.dispatch('getAllBooks');
+        this.formatData(this.$store.getters.getterListAllBooks)
     },
     formatData(jsonContent){
       this.allBooks = jsonContent
@@ -35,7 +31,6 @@ export default {
   beforeMount() {
     this.initComponentData()
   }
-
 }
 </script>
 
