@@ -7,6 +7,7 @@ export default {
             password: payload.password
         })
             .then(response => {
+                console.log(response)
                 const responseData =  response.data
 
                 // prendre en compte pb expiration token dans le futur car il n'expire jamais pour le moment
@@ -37,6 +38,7 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('userName');
         localStorage.removeItem('userId');
+        // need to do api call to remove cookie httpOnly
 
         context.commit('setUser', {
             token: null,
