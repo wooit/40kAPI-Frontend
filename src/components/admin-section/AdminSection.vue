@@ -5,6 +5,7 @@
     <section class="section-radio-input">
       <label><input type="radio" v-model="isActiveComponent" value="AdminUsers" />Users Operations</label>
       <label><input type="radio" v-model="isActiveComponent" value="AdminBooks" />Books Operations </label>
+      <label><input type="radio" v-model="isActiveComponent" value="AdminAuthors" />Authors Operations </label>
       <label><input type="radio" v-model="isActiveComponent" value="AdminSeries"/> Series Operations</label>
       <label><input type="radio" v-model="isActiveComponent" value=""/> Characters Operations</label>
     </section>
@@ -23,12 +24,14 @@
 import AdminUsers from "@/components/admin-section/subAdminComponents/users/AdminUsers";
 import AdminBooks from "@/components/admin-section/subAdminComponents/books/AdminBooks";
 import AdminSeries from "@/components/admin-section/subAdminComponents/series/AdminSeries";
+import AdminAuthors from "@/components/admin-section/subAdminComponents/authors/AdminAuthors";
 
 export default {
   components: {
     AdminUsers,
     AdminBooks,
-    AdminSeries
+    AdminSeries,
+    AdminAuthors
   },
   data(){
     return {

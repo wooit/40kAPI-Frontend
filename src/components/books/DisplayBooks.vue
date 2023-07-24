@@ -1,6 +1,6 @@
 <template>
   <div class="grid-champions">
-  <book-card v-for="book in allBooks" :key="book.id" :dataBook="book"></book-card>
+    <book-card v-for="book in allBooks" :key="book.id" :dataBook="book"></book-card>
   </div>
 
 </template>

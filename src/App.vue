@@ -9,8 +9,8 @@
 <!--      </transition>-->
 <!--    </router-view>-->
   </main>
-  <the-footer></the-footer>
   </body>
+  <the-footer></the-footer>
 </template>
 
 <script>

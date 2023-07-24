@@ -11,7 +11,7 @@
       ></v-text-field>
       <v-text-field
           v-model="author"
-          label="Title Book"
+          label="author Book"
           required
           placeholder="string"
       ></v-text-field>

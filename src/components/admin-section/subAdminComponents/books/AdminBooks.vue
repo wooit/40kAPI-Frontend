@@ -1,47 +1,24 @@
 <template>
-  <div>
+  <div style="margin-bottom: 200px">
     <div style="display: flex; justify-content: flex-end">
-      <v-btn  outlined variant="tonal" color="success" @click="openCreateForm(mode)">
-        POST a new book
-      </v-btn>
+      <v-btn  outlined variant="tonal" color="success" @click="openCreateForm(mode)">POST a new book</v-btn>
     </div>
     <v-table theme="light">
       <thead>
       <tr>
-        <th class="text-left">
-          ID
-        </th>
-        <th class="text-left">
-          Title
-        </th>
-        <th class="text-left">
-          Author
-        </th>
-        <th class="text-left">
-          Summary
-        </th>
-        <th class="text-left">
-          Serie
-        </th>
-        <th class="text-left">
-          Period
-        </th>
-        <th class="text-left">
-          Img
-        </th>
-        <th class="text-left">
-          Delete
-        </th>
-        <th class="text-left">
-          Update
-        </th>
+        <th class="text-left">ID</th>
+        <th class="text-left">Title</th>
+        <th class="text-left">Author</th>
+        <th class="text-left">Summary</th>
+        <th class="text-left">Serie</th>
+        <th class="text-left">Period</th>
+        <th class="text-left">Img</th>
+        <th class="text-left">Delete</th>
+        <th class="text-left">Update</th>
       </tr>
       </thead>
       <tbody>
-      <tr
-          v-for="item in listBooks"
-          :key="item"
-      >
+      <tr v-for="item in listBooks" :key="item">
         <td>{{ item.id }}</td>
         <td>{{ item.title }}</td>
         <td>{{ item.author }}</td>
@@ -83,7 +60,6 @@
       </v-card>
     </v-dialog>
   </div>
-
 </template>
 
 <script>
@@ -128,6 +104,10 @@ export default {
     },
     openUpdateForm(id){
       this.mode = 'update'
+
+      // cant use a find method yet since i dont fetch the full book entity
+      // MAYBE I NEED TO USE STORE DATA
+      // console.log(this.listBooks.find(el => el.id === id))
       axios.get('http://localhost:5000/book/id/'+id)
           .then(res =>{
             console.log(res)
@@ -138,7 +118,10 @@ export default {
       })
     },
     // create/update method
+    // WARNING data expected by Post and Patch route are not the same on the backend
+    // NEED TO SOLVE THAT
     createUpdateBook(paramsBody){
+      console.log(paramsBody)
       if(this.mode === 'create'){
         axios.post('http://localhost:5000/book', {
           title: paramsBody.title,
@@ -161,17 +144,19 @@ export default {
               console.log(err)
             })
       } else{
+        console.log('HERE')
+        console.log(paramsBody.imgUrl)
         axios.patch('http://localhost:5000/book/id/'+this.bookToUpdate.id, {
           title: paramsBody.title,
           author: paramsBody.author,
           summary: paramsBody.summary,
-          releaseDate: paramsBody.releaseDate,
-          releaseOrder: parseInt(paramsBody.releaseOrder),
-          imgUrl: paramsBody.imgUrl,
-          readingOrder: parseInt(paramsBody.readingOrder),
+          release_date: paramsBody.releaseDate,
+          release_order: parseInt(paramsBody.releaseOrder),
+          img_url: paramsBody.imgUrl,
+          reading_order: parseInt(paramsBody.readingOrder),
           period: paramsBody.period,
-          multipleStories: parseInt(paramsBody.multipleStories),
-          serieId: parseInt(paramsBody.serieId)
+          multiple_stories: parseInt(paramsBody.multipleStories),
+          serie_id: parseInt(paramsBody.serieId)
         })
             .then(res => {
               console.log(res)
@@ -189,6 +174,7 @@ export default {
       return this.$store.getters.userName;
     },
     listBooks(){
+      console.log(this.$store.getters.getterListAllBooks)
       return this.$store.getters.getterListAllBooks;
     }
   },
