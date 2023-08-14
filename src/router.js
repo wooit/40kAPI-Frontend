@@ -40,7 +40,7 @@ const router = createRouter({
 
 router.beforeEach(function (to, _, next){
     //redirect to home if user is logging out
-    if(to.meta.redirectHome){
+    if(to.meta.redirectHome){ // check redirect property route
         next('/home');
     } else if(to.meta.adminRole && store.getters.isAdmin === false){
         console.log(store.getters.isAdmin)

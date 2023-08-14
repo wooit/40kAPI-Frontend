@@ -1,8 +1,11 @@
 <template>
-  <h1>List of all the books</h1>
   <div>
-    <display-books></display-books>
-  </div>
+    <img src="/assets/aquila.jpg" alt="aquila">
+      <div class="view-container">
+        <h1>List of all the books</h1>
+        <display-books></display-books>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -12,6 +15,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.view-container {
+  position: relative;
+  z-index: 10;
+}
+img{
+  height: 100%;
+  width: 100%;
+  z-index: -10;
+  position: absolute;
+}
 </style>

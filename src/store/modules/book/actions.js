@@ -16,5 +16,17 @@ export default {
                 console.log(error);
             })
         }
+    },
+    //action i need to use once i add/delete/update a book
+    async refreshBooksInStore(context){
+        await axios.get('http://localhost:5000/books').then(response => {
+            const responseData = response.data
+
+            context.commit('listBooks', {
+                booksInStore: responseData
+            })
+        }).catch(error =>{
+            console.log(error);
+        })
     }
 }

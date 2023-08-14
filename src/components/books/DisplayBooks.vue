@@ -1,6 +1,6 @@
 <template>
-  <div class="grid-champions">
-  <book-card v-for="book in allBooks" :key="book.id" :dataBook="book"></book-card>
+  <div class="grid-container">
+    <book-card v-for="book in allBooks" :key="book.id" :dataBook="book"></book-card>
   </div>
 
 </template>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-.grid-champions {
+.grid-container {
   display: flex;
   flex-wrap: wrap;
 }

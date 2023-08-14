@@ -28,6 +28,7 @@ export default {
 <style>
 .footer-container {
   position: fixed;
+  /*position: absolute;*/
   bottom: 0;
   width: 100%;
   background-color: #121112;
