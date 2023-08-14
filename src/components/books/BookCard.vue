@@ -5,15 +5,15 @@
 
   <!--  I will need a check is user is logged in -->
   <!--  <div v-if="isLoggedIn"> -->
-  <div class="" style="background-color: orange; margin: 20px">
+  <div class="card-container">
 
-      <div class="img" >
-        <button class="button-container" @click="openDetailedPoppin">
-          <img :src="newFormatImg" :alt="dataBook.title" style="">
+      <div class="img-section" >
+        <button @click="openDetailedPoppin">
+          <img :src="newFormatImg" :alt="dataBook.title" class="img-cover">
         </button>
       </div>
 
-    <div v-if="isLoggedIn" style="background-color: lightgreen; display: flex; flex-direction: row; justify-content: center">
+    <div class="icons-section" v-if="isLoggedIn">
       <button>
               <!--  I liked it  -->
         <v-icon icon="mdi:mdi-heart-outline"></v-icon>
@@ -32,7 +32,7 @@
       </button>
     </div>
 
-      <div class="title" style="background-color: yellow; display: flex; flex-direction: row; justify-content: center">
+      <div class="title-section">
         {{ dataBook.title }}
       </div>
   </div>
@@ -76,14 +76,33 @@ export default {
 }
 </script>
 <style>
-.button-container {
-  background-color: white;
-  border-radius: 10px;
-  border-color: black;
+.card-container {
+  margin: 1rem;
+  background-color: chocolate;
+  max-width: 150px;
+}
+.img-section {
+  background-color: #121112;
+}
+.img-cover {
+
+}
+.icons-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center
+}
+.title-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
+
 .detailed-book-poppin {
-  /*height: 80vh;*/
+  height: 80vh;
   width: 60vw;
   padding: 2rem;
   background-color: white;

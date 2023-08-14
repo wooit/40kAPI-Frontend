@@ -1,49 +1,37 @@
 <template>
-  <h1> LOGIN </h1>
-  <v-progress-circular v-if="isLoading" indeterminate  size="40" color="primary"></v-progress-circular>
-  <v-form v-model="valid">
-    <v-container>
-        <v-col
-            cols="12"
-            md="4"
-        >
+  <div class="login-container">
+    <h1 class="login-title"> LOGIN </h1>
+    <v-progress-circular v-if="isLoading" indeterminate  size="40" color="primary"></v-progress-circular>
+    <v-form v-model="valid">
+      <v-container class="login-form">
           <v-text-field
+              class="input-field"
               v-model="email"
               label="E-mail"
               required
           ></v-text-field>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
           <v-text-field
+              class="input-field"
               v-model="password"
               label="password"
               type="password"
               required
           ></v-text-field>
-        </v-col>
-      <v-col
-          cols="12"
-          md="4"
-      >
-      <v-btn v-if="!password || !email || !checkEmailBeforeSendingRequest" disabled>
-        Validate
-      </v-btn>
-      <v-btn  v-else @click="validateLogin">
-        Validate
-      </v-btn>
-      </v-col>
-      <div class="redirect-section">
-        <router-link to="/signup">
-          <p>you dont have an account yet? Register Now</p>
-        </router-link>
-      </div>
-    </v-container>
-  </v-form>
-  <div>{{ error }}</div>
+          <v-btn v-if="!password || !email || !checkEmailBeforeSendingRequest" disabled>
+            Validate
+          </v-btn>
+          <v-btn class="validate-btn" v-else @click="validateLogin">
+            Validate
+          </v-btn>
+        <div class="redirect-link">
+          <router-link to="/signup">
+            <p>you dont have an account yet? Register Now</p>
+          </router-link>
+        </div>
+      </v-container>
+    </v-form>
+    <div>{{ error }}</div>
+  </div>
 </template>
 
 <script>
@@ -84,3 +72,46 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.login-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #121112;
+  color: white;
+}
+.login-title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.login-form {
+  color: white;
+  background-color: black;
+}
+.input-field {
+  background-color: chocolate;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.v-text-field >>> input{
+  font-size: 2vh;
+}
+v-messages {
+  font-size: 2em;
+}
+.redirect-link {
+  margin-top: 2rem;
+}
+.validate-btn{
+  background-color: orange;
+}
+a {
+  color: white;
+  text-decoration: none
+}
+a:hover{
+  color: orange;
+}
+</style>

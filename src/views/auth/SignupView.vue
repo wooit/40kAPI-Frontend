@@ -1,29 +1,28 @@
 <template>
-  <div>
+  <div class="signup-container">
+    <h1 class="signup-title">Signup now !</h1>
     <v-progress-circular v-if="isLoading" indeterminate  size="40" color="primary"></v-progress-circular>
-    <h1> SIGNUP </h1>
-    <v-form v-model="valid">
-      <v-container>
-        <v-col
-            cols="12"
-            md="4"
-        >
+    <div class="signup-message"> By signing up, you may use advanced features such as organising your own library of books, grade them and use custom filters </div>
+    <v-form class="full-form" v-model="valid">
+      <v-container class="signup-form">
           <v-text-field
               v-model="username"
               :rules="usernameRules"
               :counter="20"
               label="Username"
               required
+              outlined
+              class="input-field"
           ></v-text-field>
 
-          <v-text-field
+          <v-text-field class="input-field"
               v-model="email"
               :rules="emailRules"
               label="E-mail"
               required
           ></v-text-field>
 
-          <v-text-field
+          <v-text-field class="input-field"
               v-model="password"
               :rules="passwordRules"
               label="password"
@@ -37,14 +36,13 @@
               required
           ></v-checkbox>
 
-          <v-btn v-if="!usernameIsValid || !emailIsValid || !checkbox"  disabled>
+          <v-btn  v-if="!usernameIsValid || !emailIsValid || !checkbox"  disabled>
             Validate
           </v-btn>
-          <v-btn  v-else @click="validateSignup">
+          <v-btn color="warning" class="validate-btn" v-else @click="validateSignup">
             Validate
           </v-btn>
-        </v-col>
-        <div class="redirect-section">
+        <div class="redirect-link">
           <router-link to="/login">
             <p>you already have an account? Login Now</p>
           </router-link>
@@ -159,3 +157,60 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.signup-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #121112;
+  color: white;
+}
+.signup-title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.signup-message {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+.full-form {
+  /*width: 30%;*/
+  /*height: 45%;*/
+}
+.signup-form {
+  color: white;
+  background-color: black;
+
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*background-color: lightgreen;*/
+  /*gap: 2em;*/
+}
+.input-field {
+  background-color: chocolate;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.v-text-field >>> input{
+  font-size: 2vh;
+}
+ v-messages {
+  font-size: 2em;
+}
+.redirect-link {
+  margin-top: 2rem;
+}
+.validate-btn{
+  background-color: orange;
+}
+a {
+  color: white;
+  text-decoration: none
+}
+a:hover{
+  color: orange;
+}
+</style>

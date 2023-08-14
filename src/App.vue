@@ -9,8 +9,9 @@
 <!--      </transition>-->
 <!--    </router-view>-->
   </main>
-  </body>
   <the-footer></the-footer>
+  </body>
+
 </template>
 
 <script>
@@ -27,4 +28,10 @@ export default {
 
 <style>
 
+body {
+  font-family: '', monospace;
+}
+main {
+  min-height: 100vh;
+}
 </style>
