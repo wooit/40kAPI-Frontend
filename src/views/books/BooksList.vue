@@ -2,16 +2,36 @@
   <div>
     <img src="/assets/aquila.jpg" alt="aquila">
       <div class="view-container">
-        <h1>List of all the books</h1>
-        <display-books></display-books>
+          <screen-filters v-if="isLoggedIn"></screen-filters>
+        </div>
+        <display-books :key="keyForReRenderingAfterUsingFilters"></display-books>
       </div>
-    </div>
 </template>
 
 <script>
 import DisplayBooks from "@/components/books/DisplayBooks";
+import ScreenFilters from "@/components/layout/ScreenFilters";
 export default {
-  components: { DisplayBooks }
+  emits: ['reRender'],
+  components: {
+    DisplayBooks,
+    ScreenFilters
+  },
+  data(){
+    return{
+    }
+  },
+  methods: {
+  },
+  computed: {
+    isLoggedIn(){
+      return this.$store.getters.isAuthenticated;
+    },
+    keyForReRenderingAfterUsingFilters(){
+      return this.$store.getters.getterComponentKey;
+    },
+
+  },
 }
 </script>
 
@@ -26,4 +46,5 @@ img{
   z-index: -10;
   position: absolute;
 }
+
 </style>

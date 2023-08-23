@@ -19,10 +19,32 @@ export default {
   methods: {
     testAdmin(){
       console.log(this.$store.getters.isAdmin)
+    },
+    async initComponentData(){
+      //if user is logged in
+      if(this.$store.getters.isAuthenticated === true){
+        // fetching authors
+        if(this.$store.getters.getterListAllAuthors.length === 0){
+          this.$store.dispatch('getAllAuthors')
+        }
+        if(this.$store.getters.getterListAllSeries.length === 0){
+          this.$store.dispatch('getAllSeries')
+        }
+        if(this.$store.getters.getterListAllCharacters.length === 0){
+          this.$store.dispatch('getAllCharacters')
+        }
+        if(this.$store.getters.getterListAllFactions.length === 0){
+          this.$store.dispatch('getAllFactions')
+        }
+        // TODO LATER FETCHING other filters
+        // console.log(this.$store.getters.getterListAllFactions)
+      }
     }
   },
   computed: {
-
+  },
+  created() {
+    this.initComponentData()
   }
 }
 

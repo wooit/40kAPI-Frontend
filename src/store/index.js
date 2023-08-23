@@ -2,6 +2,7 @@ import {createStore} from "vuex";
 import authModule from "@/store/modules/auth";
 import VuexPersistence from 'vuex-persist';
 import bookModule from "@/store/modules/book";
+import filtersModule from "@/store/modules/filters";
 
 const vuexLocal = new VuexPersistence({
     storage: window.localStorage,
@@ -13,6 +14,7 @@ const store = createStore({
     modules: {
         auth: authModule,
         book: bookModule,
+        filters:filtersModule
     },
     state(){
         return {

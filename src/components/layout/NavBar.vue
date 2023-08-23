@@ -6,8 +6,8 @@
 <!--        </router-link>-->
         <router-link class="nav-item" to="/home" >Home</router-link>
         <router-link class="nav-item" to="/books" >Books</router-link>
-        <router-link class="nav-item" to="/" >item2</router-link>
-        <router-link class="nav-item" to="/" >item3</router-link>
+        <router-link class="nav-item" to="/" >Authors</router-link>
+        <router-link class="nav-item" to="/" >Characters</router-link>
       </div>
       <div v-if="!isLoggedIn" class="auth-items">
         <router-link class="nav-item" to="/login">Login</router-link>
@@ -33,10 +33,10 @@ export default {
       this.$store.dispatch('logout');
     }
   },
-  computed: {
-    isLoggedIn(){
+  computed: { isLoggedIn(){
       return this.$store.getters.isAuthenticated;
     },
+
     isAdmin(){
       if(this.$store.getters.isAdmin === true){
         return  this.$store.getters.isAdmin

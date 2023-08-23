@@ -7,6 +7,8 @@ export default {
     state(){
         return {
             booksInStore: [],
+            bookFiltered: [],
+            componentKey: 0,
         }
     },
     mutations: mutations,
